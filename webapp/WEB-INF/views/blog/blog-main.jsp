@@ -14,14 +14,14 @@
 <body>
 	<div id="wrap">
 
-		<!-- 개인블로그 해더 -->
 		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
+		<!-- 개인블로그 해더 -->
 		
 		<div id="content" class="clearfix">
 			<div id="profilecate_area">
 				<div id="profile">
-					<c:if test="${blogVo.logoFile == 'default'}">
-						<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+					<c:if test="${blogVo.logoFile eq 'default'}">
+						<img id="proImg" src="${pageContext.request.contextPath}/assets/image/spring-logo.jpg">
 					</c:if>
 					<c:if test="${blogVo.logoFile != 'default'}">
 						<img id="proImg" src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}">
@@ -46,7 +46,7 @@
 					<div id="postBox" class="clearfix">
 							<div id="postTitle" class="text-left"><strong>${postVo.postTitle}</strong></div>
 							<div id="postDate" class="text-left"><strong>${postVo.regDate}</strong></div>
-							<div id="postNick">래미(iremys)님</div>
+							<div id="postNick">님</div>
 					</div>
 					<!-- //postBox -->
 				
@@ -93,8 +93,9 @@
 		</div>	
 		<!-- //content -->
 		<div class=></div>
+			
 		<c:import url="/WEB-INF/views/includes/blog-footer.jsp"></c:import>
-		
+		<!-- 개인블로그 푸터 -->
 	
 	
 	</div>

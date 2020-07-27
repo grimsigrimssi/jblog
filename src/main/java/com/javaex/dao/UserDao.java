@@ -14,7 +14,7 @@ public class UserDao {
 	
 	//회원정보 저장
 	public int insert(UserVo userVo) {
-		System.out.println("UserDao:insert");
+		System.out.println("userDao:insert");
 		
 		return sqlSession.insert("user.insert", userVo);
 	}
@@ -35,7 +35,7 @@ public class UserDao {
 	
 	//아이디체크(ajax 용)
 	public UserVo selectUser(String id) {
-		System.out.println("UserDao:selectUser(ajax)");
+		System.out.println("userDao:selectUser(ajax)");
 		System.out.println(id);
 		UserVo userVo = sqlSession.selectOne("user.selectById", id);
 		

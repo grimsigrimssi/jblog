@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,13 +45,32 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(@ModelAttribute UserVo userVo) {
-		System.out.println("userController/login");
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("userController/login" + userVo.toString());
+		UserVo vo = userService.login(userVo);
 		
-		userService.login(userVo);
+		if(vo != null) {
+			session.setAttribute("authUser", vo);
+			return "redirect:/main";
+			
+		}else {
+			System.out.println("로그인실패");
+			return "redirect:/user/loginForm?result=fail";			
+		}
 		
-		return "redirect:/main";
+		
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		System.out.println("userController/logout");
+		
+		session.removeAttribute("authUser");
+		session.invalidate();
+		
+		return "redirect:/main";		
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("/idcheck")
@@ -57,6 +78,8 @@ public class UserController {
 		System.out.println("userController/idcheck");
 		
 		return userService.checkId(id);		
-	}	
+	}
+	
+	
 
 }

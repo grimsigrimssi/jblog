@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/jqueryex/jquery/jquery-1.12.4.js"></script>
 <title>JBlog</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/jblog.css">
+	href="${pageContext.request.contextPath}/assets/css/jblog.css" type="text/css">
 
 </head>
 <body>
@@ -19,7 +19,7 @@
 		<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 
 		<div id="loginForm">
-			<form id="loginFormTag" method="get"
+			<form id="loginFormTag" method="post"
 				action="${pageContext.request.contextPath}/user/login">
 				<table>
 					<colgroup>
@@ -38,14 +38,13 @@
 
 					</tr>
 					<tr>
-						<td colspan="2" id="tdMsg" colspan="2"><span></span></td>
+						<td colspan="2" id="tdMsg" colspan="2">
+							<c:if test="${param.result eq 'fail' }">
+								<span>아이디 또는 패스워드를 확인해 주세요.</span>
+							</c:if>
+						</td>				
 					</tr>
-				</table>
-
-				<c:if test="${param.result eq 'fail'}">
-					<p>아이디 또는 비번을 확인해 주세요.</p>
-				</c:if>
-				
+				</table>			
 				<div id="btnArea">
 					<button class="btn" type="submit">로그인</button>
 				</div>
@@ -61,10 +60,4 @@
 	</div>
 
 </body>
-
-<script type="text/javascript">
-	
-</script>
-
-
 </html>
